@@ -1,0 +1,11 @@
+pandas
+numpy
+matplotlib
+yfinance
+scikit-learn
+scipy
+playwright
+pytrends
+streamlit
+tqdm
+requests
