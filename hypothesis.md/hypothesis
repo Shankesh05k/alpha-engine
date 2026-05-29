@@ -1,0 +1,13 @@
+HYPOTHESIS
+
+I am building a project that is trying to determine whether external factor/alternate factors affect stock prices. For this I have chosen naukri postings(If a new project contract has been won so workforce will be increased), google trends(to see increase in views of that particular company) and bse coporate filings.
+
+## IC Analysis Results (Week 3 — May 28, 2026)
+- skill_ai_ml_velocity: IC=-0.37, p=0.073 (PASSED) — counterintuitive negative signal
+- skill_digital_share:  IC=+0.17, p=0.277 — directionally correct, needs more data
+- volume_zscore:        IC=+0.08, p=0.725 — directionally correct, needs more data
+
+## Revised hypothesis
+AI/ML hiring velocity may be a SHORT signal (rapid AI hiring = cost pressure = 
+short term underperformance). Volume z-score remains primary long signal hypothesis.
+Need 20+ weeks to confirm either.
