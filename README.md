@@ -40,10 +40,9 @@ not revenue growth.
 Not statistically significant yet — need 10+ test weeks. 
 Results are directionally correct. Accumulating evidence weekly.
 
-How it works
+## How It Works
 Naukri scraper → Feature engineering → IC filter → GBM model → Live signal
-Google Trends  ↗   
-↗ Walk-forward backtest
+Google Trends  ↗   ↗ Walk-forward backtest
 
 ---
 
@@ -106,4 +105,3 @@ Mastek, Zensar, Sonata, Intellect Design, Happiest Minds, Cyient, LTTS, OFSS
 *Bangalore · May 2026*
 ---
 
-## How It Works
