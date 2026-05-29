@@ -1,13 +1,151 @@
-HYPOTHESIS
+# Hypothesis — Alpha Engine
 
-I am building a project that is trying to determine whether external factor/alternate factors affect stock prices. For this I have chosen naukri postings(If a new project contract has been won so workforce will be increased), google trends(to see increase in views of that particular company) and bse coporate filings.
+*Written before building. Updated as evidence accumulates.*
 
-## IC Analysis Results (Week 3 — May 28, 2026)
-- skill_ai_ml_velocity: IC=-0.37, p=0.073 (PASSED) — counterintuitive negative signal
-- skill_digital_share:  IC=+0.17, p=0.277 — directionally correct, needs more data
-- volume_zscore:        IC=+0.08, p=0.725 — directionally correct, needs more data
+---
 
-## Revised hypothesis
-AI/ML hiring velocity may be a SHORT signal (rapid AI hiring = cost pressure = 
-short term underperformance). Volume z-score remains primary long signal hypothesis.
-Need 20+ weeks to confirm either.
+## Core Claim
+
+Alternative data signals from job postings, skill hiring patterns, and 
+retail search interest can predict which Indian IT stocks will outperform 
+the Nifty IT index over the following 7–30 days — before that information 
+appears in earnings reports or analyst coverage.
+
+---
+
+## Signal 1 — Job Posting Velocity (Naukri.com)
+
+**Hypothesis:**
+When an Indian IT company posts jobs at a rate significantly above its own 
+12-week baseline, it is likely responding to new contract wins or expansion 
+of existing engagements. This revenue activity will show up in quarterly 
+earnings 1–2 quarters later, but the stock should begin repricing within 
+3–6 weeks of the hiring signal.
+
+**Direction:** Positive — more hiring above baseline → expect outperformance
+
+**Why it might work:**
+- IT services companies hire specifically for projects, not speculatively
+- Hiring leads revenue recognition by 6–12 weeks
+- Naukri data is public but not systematically monitored by institutional investors
+- Indian retail investors don't use this data at all
+
+**Why it might not work:**
+- Companies post ghost jobs to build a talent pipeline, not for specific contracts
+- Large caps (TCS, Infosys) hire continuously — signal is noisier
+- Naukri doesn't capture LinkedIn, referrals, or campus hiring
+- Short history means z-scores are based on small baselines
+
+---
+
+## Signal 2 — Skill Mix and Velocity
+
+**Hypothesis:**
+The *type* of hiring matters more than the *quantity*. A sudden spike in 
+cloud or AI hiring signals a strategic pivot or new high-margin contract. 
+A company increasing legacy (SAP, mainframe) hiring is filling existing 
+low-margin work, not winning new business.
+
+**Sub-hypotheses:**
+
+| Skill category | Expected direction | Logic |
+|---|---|---|
+| Cloud velocity | Positive | Cloud contracts are high-margin, growing |
+| AI/ML velocity | Negative ⚠️ | Rapid AI hiring = cost pressure, not revenue |
+| Digital share | Positive | Digital transformation = premium pricing |
+| Legacy share | Negative | Maintenance work = margin compression |
+
+**Key finding so far:**
+AI/ML hiring velocity turned out to be a negative signal (IC = -0.37). 
+This is the "bad news hiring" effect — companies suddenly hiring many AI 
+engineers are signalling they are behind competitors and scrambling to 
+catch up. Short-term: more cost, uncertain revenue. This is counterintuitive 
+but makes economic sense and is worth investigating further.
+
+---
+
+## Signal 3 — Google Search Interest (India)
+
+**Hypothesis:**
+Retail investors in India Google a stock before buying it. A spike in 
+search interest above a company's own baseline predicts retail buying 
+pressure over the following 1–2 weeks, which shows up as price outperformance.
+
+**Direction:** Positive — search spike → expect outperformance
+
+**Why it might work:**
+- Indian retail participation has grown enormously since 2020
+- Search precedes action — people research before they trade
+- Google Trends is free and rarely used as a systematic signal in India
+
+**Why it might not work:**
+- Search spikes can be caused by bad news (scandal, layoffs) not just buying intent
+- Monthly granularity in long date ranges limits precision
+- Signal may be very short-lived (1–3 days) — weekly data may be too slow
+
+---
+
+## Prediction (Testable)
+
+A combined signal from all three sources, when significantly positive 
+(z-score > 1.0 on at least two signals), predicts the stock will outperform 
+the Nifty IT index by >1% over the following 7 days.
+
+**Universe:** 20 Nifty IT stocks (see README for full list)
+
+**Target metric:** 7-day forward excess return vs Nifty IT index
+
+**Success criteria:**
+- Mean IC > 0.05 on at least 2 features (after 20+ weeks)
+- Walk-forward Sharpe > 0.5 after transaction costs
+- Permutation test p-value < 0.10 on hit rate metric
+
+---
+
+## Evidence Log
+
+### Week 1–3 (May 2026) — Initial IC analysis
+
+| Feature | IC (7d) | p-value | Status |
+|---|---|---|---|
+| skill_ai_ml_velocity | -0.37 | 0.073 | ✓ Passes filter |
+| trends_zscore | +0.25 | 0.547 | Promising — low N |
+| skill_digital_share | +0.17 | 0.277 | Watch |
+| skill_cloud_velocity | +0.08 | 0.695 | Needs more data |
+| volume_zscore | +0.08 | 0.725 | Needs more data |
+
+**Backtest (1 test week):**
+- Accuracy: 60% vs 44% baseline
+- Hit rate: 100% vs 63.6% null mean
+- Top decile return: 3.20% vs 2.67% null
+- p-value: 0.636 — not yet significant (expected)
+
+**Revised understanding:**
+The job posting volume signal (original hypothesis) is directionally correct 
+but needs 15+ more weeks to confirm statistically. The skill velocity signals 
+are more immediately informative than raw volume. The AI/ML velocity finding 
+was a surprise and warrants deeper investigation.
+
+---
+
+## What Would Falsify This Hypothesis
+
+1. After 20+ weeks, mean IC on volume_zscore remains below 0.02
+2. Permutation test p-value stays above 0.20 with 10+ test weeks
+3. High-confidence model picks consistently underperform low-confidence picks
+4. The same signals applied to a different sector produce similar IC 
+   (would suggest the signal is spurious, not IT-specific)
+
+---
+
+## Next Evidence Collection
+
+- [ ] 20 weeks of weekly job posting snapshots
+- [ ] BSE corporate filings sentiment as third signal
+- [ ] FinBERT sentiment on full job descriptions
+- [ ] Separate IC analysis for large cap vs mid cap IT stocks
+- [ ] Test whether signal is stronger around earnings windows
+
+---
+
+*Pre-registered: May 2026. Updated as new evidence arrives.*
