@@ -41,8 +41,11 @@ Not statistically significant yet — need 10+ test weeks.
 Results are directionally correct. Accumulating evidence weekly.
 
 ## How It Works
-Naukri scraper → Feature engineering → IC filter → GBM model → Live signal
-Google Trends  ↗   ↗ Walk-forward backtest
+**Data collection:** Naukri job postings (weekly scrape) + Google Trends + NSE prices
+
+**Pipeline:** Raw data → Feature engineering → IC signal filter → GBM model → Live signal
+
+**Validation:** Walk-forward backtest → Permutation test → Streamlit dashboard
 
 ---
 
